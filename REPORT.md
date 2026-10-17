@@ -1,7 +1,7 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39021741632
+- run: https://github.com/SSRplus/test/actions/runs/39025591285
 - result: **success**
-- date: 2026-10-17 09:42 UTC
+- date: 2026-10-17 10:43 UTC
 
 ## Error lines
 ```
@@ -21,23 +21,23 @@ logs/06-build.log:365:-- Looking for elf_aux_info - not found
 logs/06-build.log:369:-- Looking for memfd_create - not found
 logs/06-build.log:371:-- Looking for posix_fallocate - not found
 logs/06-build.log:398:-- Looking for pthread_np.h - not found
-logs/06-build.log:2203:ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vita3k/display/libdisplay.a', 'vita3k/emuenv/libemuenv.a', 'vita3k/gdbstub/libgdbstub.a', 'vita3k/gxm/libgxm.a', 'vita3k/http/libhttp.a', 'vita3k/ime/libime.a', 'vita3k/io/libio.a', 'vita3k/lang/liblang.a', 'vita3k/mem/libmem.a', 'vita3k/module/libmodule.a', 'vita3k/modules/libmodules.a', 'vita3k/motion/libmotion.a', 'vita3k/net/libnet.a', 'vita3k/overlay/liboverlay.a', 'vita3k/packages/libpackages.a', 'vita3k/patch/libpatch.a', 'vita3k/renderer/librenderer.a', 'vita3k/shader/libshader.a', 'vita3k/touch/libtouch.a', 'vita3k/util/libutil.a'
-logs/06-build.log:2204:ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+logs/06-build.log:2204:ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vita3k/display/libdisplay.a', 'vita3k/emuenv/libemuenv.a', 'vita3k/gdbstub/libgdbstub.a', 'vita3k/gxm/libgxm.a', 'vita3k/http/libhttp.a', 'vita3k/ime/libime.a', 'vita3k/io/libio.a', 'vita3k/lang/liblang.a', 'vita3k/mem/libmem.a', 'vita3k/module/libmodule.a', 'vita3k/modules/libmodules.a', 'vita3k/motion/libmotion.a', 'vita3k/net/libnet.a', 'vita3k/overlay/liboverlay.a', 'vita3k/packages/libpackages.a', 'vita3k/patch/libpatch.a', 'vita3k/renderer/librenderer.a', 'vita3k/shader/libshader.a', 'vita3k/touch/libtouch.a', 'vita3k/util/libutil.a'
+logs/06-build.log:2205:ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
 ```
 
 ## 01-get-source.log (last 60 lines)
 ```
 --- files in repo root:
-total 15536
-drwxr-xr-x   9 runner  staff      288 Oct 17 09:36 .
-drwxr-xr-x   3 runner  staff       96 Oct 17 09:36 ..
-drwxr-xr-x  14 runner  staff      448 Oct 17 09:36 .git
-drwxr-xr-x   3 runner  staff       96 Oct 17 09:36 .github
-drwxr-xr-x   3 runner  staff       96 Oct 17 09:36 logs
--rw-r--r--   1 runner  staff        6 Oct 17 09:36 README.md
--rw-r--r--   1 runner  staff    74390 Oct 17 09:36 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 17 09:36 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 17 09:36 work
+total 15544
+drwxr-xr-x   9 runner  staff      288 Oct 17 10:37 .
+drwxr-xr-x   3 runner  staff       96 Oct 17 10:37 ..
+drwxr-xr-x  14 runner  staff      448 Oct 17 10:37 .git
+drwxr-xr-x   3 runner  staff       96 Oct 17 10:37 .github
+drwxr-xr-x   3 runner  staff       96 Oct 17 10:37 logs
+-rw-r--r--   1 runner  staff        6 Oct 17 10:37 README.md
+-rw-r--r--   1 runner  staff    81482 Oct 17 10:37 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 17 10:37 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 17 10:37 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -62,8 +62,8 @@ ldid nasm
 libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
-✔︎ Bottle libplist (2.7.0)
 ✔︎ Bottle ldid (2.1.5_1)
+✔︎ Bottle libplist (2.7.0)
 ✔︎ Bottle nasm (3.02)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
@@ -229,14 +229,15 @@ In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-mast
   214 | #endif
   215 |         case config::RestartRequiredSetting::HighAccuracy:
 3 warnings generated.
-[990/1000] Linking CXX static library vita3k/ctrl/libctrl.a
-[991/1000] Linking CXX static library external/libcppcommon.a
-[992/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/session_controller.cpp.o
-[993/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_jit.cpp.o
-[994/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/user.cpp.o
-[995/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/performance.cpp.o
-[996/1000] Linking CXX static library vita3k/app/libapp.a
-[997/1000] Building OBJCXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_main.mm.o
+[991/1001] Linking CXX static library vita3k/ctrl/libctrl.a
+[992/1001] Linking CXX static library external/libcppcommon.a
+[993/1001] Building CXX object vita3k/app/CMakeFiles/app.dir/src/session_controller.cpp.o
+[994/1001] Building CXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_jit.cpp.o
+[995/1001] Building CXX object vita3k/app/CMakeFiles/app.dir/src/user.cpp.o
+[996/1001] Building CXX object vita3k/CMakeFiles/vita3k.dir/performance.cpp.o
+[997/1001] Linking CXX static library vita3k/app/libapp.a
+[998/1001] Building CXX object vita3k/CMakeFiles/vita3k.dir/interface.cpp.o
+[999/1001] Building OBJCXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_main.mm.o
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/ios/ios_main.mm:51:
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/include/app/session_controller.h:21:
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/renderer/include/renderer/state.h:23:
@@ -251,8 +252,7 @@ In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-mast
   240 |     #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
       |             ^
 1 warning generated.
-[998/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/interface.cpp.o
-[999/1000] Linking CXX executable bin/Vita3K.app/Vita3K
+[1000/1001] Linking CXX executable bin/Vita3K.app/Vita3K
 ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vit
 ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
 ```
@@ -286,9 +286,9 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 63472
-drwxr-xr-x   4 runner  staff       128 Oct 17 09:42 .
-drwxr-xr-x  13 runner  staff       416 Oct 17 09:42 ..
--rw-r--r--   1 runner  staff  15877725 Oct 17 09:42 Vita3K.ipa
--rw-r--r--   1 runner  staff  15877725 Oct 17 09:42 Vita3K.tipa
+total 63912
+drwxr-xr-x   4 runner  staff       128 Oct 17 10:43 .
+drwxr-xr-x  13 runner  staff       416 Oct 17 10:42 ..
+-rw-r--r--   1 runner  staff  15890688 Oct 17 10:43 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15890688 Oct 17 10:43 Vita3K.tipa
 ```

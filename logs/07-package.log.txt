@@ -25,8 +25,8 @@
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 63472
-drwxr-xr-x   4 runner  staff       128 Oct 17 09:42 .
-drwxr-xr-x  13 runner  staff       416 Oct 17 09:42 ..
--rw-r--r--   1 runner  staff  15877725 Oct 17 09:42 Vita3K.ipa
--rw-r--r--   1 runner  staff  15877725 Oct 17 09:42 Vita3K.tipa
+total 63912
+drwxr-xr-x   4 runner  staff       128 Oct 17 10:43 .
+drwxr-xr-x  13 runner  staff       416 Oct 17 10:42 ..
+-rw-r--r--   1 runner  staff  15890688 Oct 17 10:43 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15890688 Oct 17 10:43 Vita3K.tipa
