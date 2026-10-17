@@ -1,26 +1,10 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39007474617
+- run: https://github.com/SSRplus/test/actions/runs/39010573675
 - result: **success**
-- date: 2026-10-17 05:59 UTC
+- date: 2026-10-17 06:42 UTC
 
 ## Error lines
 ```
-logs/04-deps.log:1580:ld: warning: -s is obsolete
-logs/04-deps.log:1582:Unicode/ICU support for Boost.Regex?... not found.
-logs/04-deps.log:17704:-- Looking for OPENSSL_IS_BORINGSSL - not found
-logs/04-deps.log:17706:-- Looking for OPENSSL_IS_AWSLC - not found
-logs/04-deps.log:17741:-- Looking for 14 include files sys/filio.h, ..., sys/utime.h - not found
-logs/04-deps.log:17753:-- Looking for 19 include files sys/filio.h, ..., io.h - not found
-logs/04-deps.log:17769:-- Looking for linux/tcp.h - not found
-logs/04-deps.log:17781:-- Looking for 31 include files sys/filio.h, ..., stropts.h - not found
-logs/04-deps.log:17783:-- Looking for 31 include files sys/filio.h, ..., termio.h - not found
-logs/04-deps.log:17837:-- Looking for stricmp - not found
-logs/04-deps.log:17839:-- Looking for strcmpi - not found
-logs/04-deps.log:17841:-- Looking for memrchr - not found
-logs/04-deps.log:17855:-- Looking for closesocket - not found
-logs/04-deps.log:17859:-- Looking for getpass_r - not found
-logs/04-deps.log:17871:-- Looking for gethostbyname_r - not found
-logs/04-deps.log:17893:-- Looking for _fseeki64 - not found
 logs/06-build.log:52:-- Looking for fwrite_unlocked - not found
 logs/06-build.log:77:-- Looking for __GLIBC__ - not found
 logs/06-build.log:101:-- Looking for malloc.h - not found
@@ -45,15 +29,15 @@ logs/06-build.log:2204:ld: warning: reducing alignment of section __DATA,__commo
 ```
 --- files in repo root:
 total 15520
-drwxr-xr-x   9 runner  staff      288 Oct 17 05:46 .
-drwxr-xr-x   3 runner  staff       96 Oct 17 05:46 ..
-drwxr-xr-x  14 runner  staff      448 Oct 17 05:46 .git
-drwxr-xr-x   3 runner  staff       96 Oct 17 05:46 .github
-drwxr-xr-x   3 runner  staff       96 Oct 17 05:46 logs
--rw-r--r--   1 runner  staff        6 Oct 17 05:46 README.md
--rw-r--r--   1 runner  staff    68239 Oct 17 05:46 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 17 05:46 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 17 05:46 work
+drwxr-xr-x   9 runner  staff      288 Oct 17 06:37 .
+drwxr-xr-x   3 runner  staff       96 Oct 17 06:37 ..
+drwxr-xr-x  14 runner  staff      448 Oct 17 06:37 .git
+drwxr-xr-x   3 runner  staff       96 Oct 17 06:37 .github
+drwxr-xr-x   3 runner  staff       96 Oct 17 06:37 logs
+-rw-r--r--   1 runner  staff        6 Oct 17 06:37 README.md
+-rw-r--r--   1 runner  staff    67876 Oct 17 06:37 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 17 06:37 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 17 06:37 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -133,20 +117,20 @@ pinned submodules total:       28
 
 ## 04-deps.log (last 60 lines)
 ```
-INSTALL	libavutil/version.h
-INSTALL	libavutil/video_enc_params.h
-INSTALL	libavutil/xtea.h
-INSTALL	libavutil/tea.h
-INSTALL	libavutil/tx.h
-INSTALL	libavutil/film_grain_params.h
-INSTALL	libavutil/video_hint.h
-INSTALL	libavutil/avconfig.h
-INSTALL	libavutil/ffversion.h
-INSTALL	libavutil/libavutil.pc
-+ cp libavcodec/codec_internal.h /Users/runner/work/test/test/ios-deps/include/libavcodec/
-+ cp config.h /Users/runner/work/test/test/ios-deps/include/config.h
-+ popd
-~/work/test/test/deps-build
++ '[' -z '' ']'
++ '[' -n /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master ']'
++ '[' -d /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg ']'
+++ grep -rhoiE 'ffmpeg[-_ /]*(n|version[ =:]*)?[67]\.[0-9](\.[0-9]+)?' /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg
+++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
+++ sort -V
+++ tail -1
++ FF_VER=
++ case "$FF_VER" in
++ FF_VER=6.1.1
++ case "$FF_VER" in
++ echo 'FFmpeg version: 6.1.1'
+FFmpeg version: 6.1.1
++ '[' '!' -f /Users/runner/work/test/test/ios-deps/lib/libavcodec.a ']'
 + ls /Users/runner/work/test/test/ios-deps /Users/runner/work/test/test/ios-deps/lib
 + head -60
 /Users/runner/work/test/test/ios-deps:
@@ -302,9 +286,9 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 63640
-drwxr-xr-x   4 runner  staff       128 Oct 17 05:59 .
-drwxr-xr-x  13 runner  staff       416 Oct 17 05:59 ..
--rw-r--r--   1 runner  staff  15865209 Oct 17 05:59 Vita3K.ipa
--rw-r--r--   1 runner  staff  15865209 Oct 17 05:59 Vita3K.tipa
+total 62872
+drwxr-xr-x   4 runner  staff       128 Oct 17 06:42 .
+drwxr-xr-x  13 runner  staff       416 Oct 17 06:42 ..
+-rw-r--r--   1 runner  staff  15865176 Oct 17 06:42 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15865176 Oct 17 06:42 Vita3K.tipa
 ```
