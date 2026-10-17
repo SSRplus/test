@@ -1,7 +1,7 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39027773354
+- run: https://github.com/SSRplus/test/actions/runs/39028424952
 - result: **success**
-- date: 2026-10-17 11:20 UTC
+- date: 2026-10-17 11:30 UTC
 
 ## Error lines
 ```
@@ -29,15 +29,15 @@ logs/06-build.log:2204:ld: warning: reducing alignment of section __DATA,__commo
 ```
 --- files in repo root:
 total 15536
-drwxr-xr-x   9 runner  staff      288 Oct 17 11:12 .
-drwxr-xr-x   3 runner  staff       96 Oct 17 11:12 ..
-drwxr-xr-x  14 runner  staff      448 Oct 17 11:12 .git
-drwxr-xr-x   3 runner  staff       96 Oct 17 11:12 .github
-drwxr-xr-x   3 runner  staff       96 Oct 17 11:12 logs
--rw-r--r--   1 runner  staff        6 Oct 17 11:12 README.md
--rw-r--r--   1 runner  staff    74390 Oct 17 11:12 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 17 11:12 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 17 11:12 work
+drwxr-xr-x   9 runner  staff      288 Oct 17 11:22 .
+drwxr-xr-x   3 runner  staff       96 Oct 17 11:22 ..
+drwxr-xr-x  14 runner  staff      448 Oct 17 11:22 .git
+drwxr-xr-x   3 runner  staff       96 Oct 17 11:22 .github
+drwxr-xr-x   3 runner  staff       96 Oct 17 11:22 logs
+-rw-r--r--   1 runner  staff        6 Oct 17 11:22 README.md
+-rw-r--r--   1 runner  staff    75769 Oct 17 11:22 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 17 11:22 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 17 11:22 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -63,8 +63,8 @@ libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
 ✔︎ Bottle ldid (2.1.5_1)
-✔︎ Bottle nasm (3.02)
 ✔︎ Bottle libplist (2.7.0)
+✔︎ Bottle nasm (3.02)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 604.1KB
@@ -120,8 +120,8 @@ pinned submodules total:       28
 + '[' -z '' ']'
 + '[' -n /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master ']'
 + '[' -d /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg ']'
-++ grep -rhoiE 'ffmpeg[-_ /]*(n|version[ =:]*)?[67]\.[0-9](\.[0-9]+)?' /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg
 ++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
+++ grep -rhoiE 'ffmpeg[-_ /]*(n|version[ =:]*)?[67]\.[0-9](\.[0-9]+)?' /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg
 ++ sort -V
 ++ tail -1
 + FF_VER=
@@ -286,9 +286,9 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 63056
-drwxr-xr-x   4 runner  staff       128 Oct 17 11:20 .
-drwxr-xr-x  13 runner  staff       416 Oct 17 11:20 ..
--rw-r--r--   1 runner  staff  15877725 Oct 17 11:20 Vita3K.ipa
--rw-r--r--   1 runner  staff  15877725 Oct 17 11:20 Vita3K.tipa
+total 62192
+drwxr-xr-x   4 runner  staff       128 Oct 17 11:30 .
+drwxr-xr-x  13 runner  staff       416 Oct 17 11:29 ..
+-rw-r--r--   1 runner  staff  15879859 Oct 17 11:30 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15879859 Oct 17 11:30 Vita3K.tipa
 ```
