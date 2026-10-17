@@ -5,8 +5,8 @@
 + IOS_DEPS=/Users/runner/work/test/test/ios-deps
 + rm -rf Payload /Users/runner/work/test/test/out
 + mkdir -p /Users/runner/work/test/test/out
-++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
 ++ head -1
+++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
 + APP=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app
 + '[' -z /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app ']'
 + mkdir -p Payload
@@ -25,8 +25,8 @@
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 62872
-drwxr-xr-x   4 runner  staff       128 Oct 17 06:42 .
-drwxr-xr-x  13 runner  staff       416 Oct 17 06:42 ..
--rw-r--r--   1 runner  staff  15865176 Oct 17 06:42 Vita3K.ipa
--rw-r--r--   1 runner  staff  15865176 Oct 17 06:42 Vita3K.tipa
+total 63768
+drwxr-xr-x   4 runner  staff       128 Oct 17 07:10 .
+drwxr-xr-x  13 runner  staff       416 Oct 17 07:10 ..
+-rw-r--r--   1 runner  staff  15865122 Oct 17 07:10 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15865122 Oct 17 07:10 Vita3K.tipa
