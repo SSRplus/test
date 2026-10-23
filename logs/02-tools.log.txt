@@ -17,8 +17,8 @@ libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
 ✔︎ Bottle ldid (2.1.5_1)
-✔︎ Bottle libplist (2.7.0)
 ✔︎ Bottle nasm (3.02)
+✔︎ Bottle libplist (2.7.0)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 604.1KB

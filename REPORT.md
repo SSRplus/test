@@ -1,43 +1,43 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39894017861
+- run: https://github.com/SSRplus/test/actions/runs/39898001025
 - result: **success**
-- date: 2026-10-23 03:21 UTC
+- date: 2026-10-23 04:10 UTC
 
 ## Error lines
 ```
-logs/06-build.log:82:-- Looking for fwrite_unlocked - not found
-logs/06-build.log:107:-- Looking for __GLIBC__ - not found
-logs/06-build.log:131:-- Looking for malloc.h - not found
-logs/06-build.log:217:-- Looking for fopen64 - not found
-logs/06-build.log:221:-- Looking for fseeko64 - not found
-logs/06-build.log:225:-- Looking for _i64toa - not found
-logs/06-build.log:229:-- Looking for itoa - not found
-logs/06-build.log:243:-- Looking for _ltoa - not found
-logs/06-build.log:281:-- Looking for sqr - not found
-logs/06-build.log:369:-- Looking for fdatasync - not found
-logs/06-build.log:377:-- Looking for sigtimedwait - not found
-logs/06-build.log:393:-- Looking for getauxval - not found
-logs/06-build.log:395:-- Looking for elf_aux_info - not found
-logs/06-build.log:399:-- Looking for memfd_create - not found
-logs/06-build.log:401:-- Looking for posix_fallocate - not found
-logs/06-build.log:428:-- Looking for pthread_np.h - not found
-logs/06-build.log:2233:ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vita3k/display/libdisplay.a', 'vita3k/emuenv/libemuenv.a', 'vita3k/gdbstub/libgdbstub.a', 'vita3k/gxm/libgxm.a', 'vita3k/http/libhttp.a', 'vita3k/ime/libime.a', 'vita3k/io/libio.a', 'vita3k/lang/liblang.a', 'vita3k/mem/libmem.a', 'vita3k/module/libmodule.a', 'vita3k/modules/libmodules.a', 'vita3k/motion/libmotion.a', 'vita3k/net/libnet.a', 'vita3k/overlay/liboverlay.a', 'vita3k/packages/libpackages.a', 'vita3k/patch/libpatch.a', 'vita3k/renderer/librenderer.a', 'vita3k/shader/libshader.a', 'vita3k/touch/libtouch.a', 'vita3k/util/libutil.a'
-logs/06-build.log:2234:ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+logs/06-build.log:52:-- Looking for fwrite_unlocked - not found
+logs/06-build.log:77:-- Looking for __GLIBC__ - not found
+logs/06-build.log:101:-- Looking for malloc.h - not found
+logs/06-build.log:187:-- Looking for fopen64 - not found
+logs/06-build.log:191:-- Looking for fseeko64 - not found
+logs/06-build.log:195:-- Looking for _i64toa - not found
+logs/06-build.log:199:-- Looking for itoa - not found
+logs/06-build.log:213:-- Looking for _ltoa - not found
+logs/06-build.log:251:-- Looking for sqr - not found
+logs/06-build.log:339:-- Looking for fdatasync - not found
+logs/06-build.log:347:-- Looking for sigtimedwait - not found
+logs/06-build.log:363:-- Looking for getauxval - not found
+logs/06-build.log:365:-- Looking for elf_aux_info - not found
+logs/06-build.log:369:-- Looking for memfd_create - not found
+logs/06-build.log:371:-- Looking for posix_fallocate - not found
+logs/06-build.log:398:-- Looking for pthread_np.h - not found
+logs/06-build.log:2203:ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vita3k/display/libdisplay.a', 'vita3k/emuenv/libemuenv.a', 'vita3k/gdbstub/libgdbstub.a', 'vita3k/gxm/libgxm.a', 'vita3k/http/libhttp.a', 'vita3k/ime/libime.a', 'vita3k/io/libio.a', 'vita3k/lang/liblang.a', 'vita3k/mem/libmem.a', 'vita3k/module/libmodule.a', 'vita3k/modules/libmodules.a', 'vita3k/motion/libmotion.a', 'vita3k/net/libnet.a', 'vita3k/overlay/liboverlay.a', 'vita3k/packages/libpackages.a', 'vita3k/patch/libpatch.a', 'vita3k/renderer/librenderer.a', 'vita3k/shader/libshader.a', 'vita3k/touch/libtouch.a', 'vita3k/util/libutil.a'
+logs/06-build.log:2204:ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
 ```
 
 ## 01-get-source.log (last 60 lines)
 ```
 --- files in repo root:
-total 15544
-drwxr-xr-x   9 runner  staff      288 Oct 23 03:15 .
-drwxr-xr-x   3 runner  staff       96 Oct 23 03:15 ..
-drwxr-xr-x  14 runner  staff      448 Oct 23 03:15 .git
-drwxr-xr-x   3 runner  staff       96 Oct 23 03:15 .github
-drwxr-xr-x   2 runner  staff       64 Oct 23 03:15 logs
--rw-r--r--   1 runner  staff        6 Oct 23 03:15 README.md
--rw-r--r--   1 runner  staff    81782 Oct 23 03:15 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 23 03:15 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 23 03:15 work
+total 15536
+drwxr-xr-x   9 runner  staff      288 Oct 23 04:00 .
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 ..
+drwxr-xr-x  14 runner  staff      448 Oct 23 04:00 .git
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 .github
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 logs
+-rw-r--r--   1 runner  staff        6 Oct 23 04:00 README.md
+-rw-r--r--   1 runner  staff    75769 Oct 23 04:00 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 23 04:00 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 23 04:00 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -63,8 +63,8 @@ libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
 ✔︎ Bottle ldid (2.1.5_1)
-✔︎ Bottle libplist (2.7.0)
 ✔︎ Bottle nasm (3.02)
+✔︎ Bottle libplist (2.7.0)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 604.1KB
@@ -195,6 +195,10 @@ all iOS patches applied
 
 ## 06-build.log (last 60 lines)
 ```
+  149 | #define HTONLL(x)       (x) = htonll((__uint64_t)x)
+      |         ^
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/src/app_init.cpp:41:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/state.h:20:
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/epoll.h:3:
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/socket.h:20:
 /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/types.h:30:9: warning: 'NTOHLL' macro redefined [-Wmacro-redefined]
@@ -251,10 +255,6 @@ In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-mast
 [999/1000] Linking CXX executable bin/Vita3K.app/Vita3K
 ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vit
 ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
-+ BUILD_OK=1
-+ echo '=== ThinLTO build OK ==='
-=== ThinLTO build OK ===
-+ '[' -z 1 ']'
 ```
 
 ## 07-package.log (last 60 lines)
@@ -286,9 +286,9 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 63800
-drwxr-xr-x   4 runner  staff       128 Oct 23 03:21 .
-drwxr-xr-x  13 runner  staff       416 Oct 23 03:21 ..
--rw-r--r--   1 runner  staff  15817891 Oct 23 03:21 Vita3K.ipa
--rw-r--r--   1 runner  staff  15817891 Oct 23 03:21 Vita3K.tipa
+total 62160
+drwxr-xr-x   4 runner  staff       128 Oct 23 04:10 .
+drwxr-xr-x  13 runner  staff       416 Oct 23 04:10 ..
+-rw-r--r--   1 runner  staff  15879859 Oct 23 04:10 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15879859 Oct 23 04:10 Vita3K.tipa
 ```

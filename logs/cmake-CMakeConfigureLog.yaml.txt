@@ -1,11 +1,3 @@
-        - "/Users/runner/.cargo/bin"
-        - "/usr/local/opt/curl/bin"
-        - "/usr/local/bin"
-        - "/usr/local/sbin"
-        - "/Users/runner/bin"
-        - "/Users/runner/.yarn/bin"
-        - "/Users/runner/Library/Android/sdk/tools"
-        - "/Users/runner/Library/Android/sdk/platform-tools"
         - "/Library/Frameworks/Python.framework/Versions/Current/bin"
         - "/Library/Frameworks/Mono.framework/Versions/Current/Commands"
         - "/usr/bin"
@@ -88,6 +80,14 @@
       -
         path: "/Users/runner/work/test/test/ios-deps/curl-config.cmake"
         mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/runner/work/test/test/ios-deps/lib64/cps/CURL.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/Users/runner/work/test/test/ios-deps/lib64/cps/curl.cps"
+        mode: "cps"
         reason: "no_exist"
       -
         path: "/Users/runner/work/test/test/ios-deps/lib/cps/CURL.cps"
