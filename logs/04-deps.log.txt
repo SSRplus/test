@@ -21,8 +21,8 @@
 + '[' -z '' ']'
 + '[' -n /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master ']'
 + '[' -d /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg ']'
-++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
 ++ grep -rhoiE 'ffmpeg[-_ /]*(n|version[ =:]*)?[67]\.[0-9](\.[0-9]+)?' /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg
+++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
 ++ sort -V
 ++ tail -1
 + FF_VER=
@@ -32,8 +32,8 @@
 + echo 'FFmpeg version: 6.1.1'
 FFmpeg version: 6.1.1
 + '[' '!' -f /Users/runner/work/test/test/ios-deps/lib/libavcodec.a ']'
-+ head -60
 + ls /Users/runner/work/test/test/ios-deps /Users/runner/work/test/test/ios-deps/lib
++ head -60
 /Users/runner/work/test/test/ios-deps:
 bin
 Frameworks

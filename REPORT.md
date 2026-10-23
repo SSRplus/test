@@ -1,7 +1,7 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39893916734
-- result: **cancelled**
-- date: 2026-10-23 03:18 UTC
+- run: https://github.com/SSRplus/test/actions/runs/39894017861
+- result: **success**
+- date: 2026-10-23 03:21 UTC
 
 ## Error lines
 ```
@@ -21,21 +21,23 @@ logs/06-build.log:395:-- Looking for elf_aux_info - not found
 logs/06-build.log:399:-- Looking for memfd_create - not found
 logs/06-build.log:401:-- Looking for posix_fallocate - not found
 logs/06-build.log:428:-- Looking for pthread_np.h - not found
+logs/06-build.log:2233:ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vita3k/display/libdisplay.a', 'vita3k/emuenv/libemuenv.a', 'vita3k/gdbstub/libgdbstub.a', 'vita3k/gxm/libgxm.a', 'vita3k/http/libhttp.a', 'vita3k/ime/libime.a', 'vita3k/io/libio.a', 'vita3k/lang/liblang.a', 'vita3k/mem/libmem.a', 'vita3k/module/libmodule.a', 'vita3k/modules/libmodules.a', 'vita3k/motion/libmotion.a', 'vita3k/net/libnet.a', 'vita3k/overlay/liboverlay.a', 'vita3k/packages/libpackages.a', 'vita3k/patch/libpatch.a', 'vita3k/renderer/librenderer.a', 'vita3k/shader/libshader.a', 'vita3k/touch/libtouch.a', 'vita3k/util/libutil.a'
+logs/06-build.log:2234:ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
 ```
 
 ## 01-get-source.log (last 60 lines)
 ```
 --- files in repo root:
 total 15544
-drwxr-xr-x   9 runner  staff      288 Oct 23 03:14 .
-drwxr-xr-x   3 runner  staff       96 Oct 23 03:14 ..
-drwxr-xr-x  14 runner  staff      448 Oct 23 03:14 .git
-drwxr-xr-x   3 runner  staff       96 Oct 23 03:14 .github
-drwxr-xr-x   2 runner  staff       64 Oct 23 03:14 logs
--rw-r--r--   1 runner  staff        6 Oct 23 03:14 README.md
--rw-r--r--   1 runner  staff    81782 Oct 23 03:14 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 23 03:14 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 23 03:14 work
+drwxr-xr-x   9 runner  staff      288 Oct 23 03:15 .
+drwxr-xr-x   3 runner  staff       96 Oct 23 03:15 ..
+drwxr-xr-x  14 runner  staff      448 Oct 23 03:15 .git
+drwxr-xr-x   3 runner  staff       96 Oct 23 03:15 .github
+drwxr-xr-x   2 runner  staff       64 Oct 23 03:15 logs
+-rw-r--r--   1 runner  staff        6 Oct 23 03:15 README.md
+-rw-r--r--   1 runner  staff    81782 Oct 23 03:15 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 23 03:15 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 23 03:15 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -61,8 +63,8 @@ libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
 ✔︎ Bottle ldid (2.1.5_1)
-✔︎ Bottle nasm (3.02)
 ✔︎ Bottle libplist (2.7.0)
+✔︎ Bottle nasm (3.02)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 604.1KB
@@ -118,8 +120,8 @@ pinned submodules total:       28
 + '[' -z '' ']'
 + '[' -n /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master ']'
 + '[' -d /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg ']'
-++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
 ++ grep -rhoiE 'ffmpeg[-_ /]*(n|version[ =:]*)?[67]\.[0-9](\.[0-9]+)?' /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/ffmpeg
+++ grep -oE '[67]\.[0-9](\.[0-9]+)?'
 ++ sort -V
 ++ tail -1
 + FF_VER=
@@ -129,8 +131,8 @@ pinned submodules total:       28
 + echo 'FFmpeg version: 6.1.1'
 FFmpeg version: 6.1.1
 + '[' '!' -f /Users/runner/work/test/test/ios-deps/lib/libavcodec.a ']'
-+ head -60
 + ls /Users/runner/work/test/test/ios-deps /Users/runner/work/test/test/ios-deps/lib
++ head -60
 /Users/runner/work/test/test/ios-deps:
 bin
 Frameworks
@@ -193,64 +195,100 @@ all iOS patches applied
 
 ## 06-build.log (last 60 lines)
 ```
-[487/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/GenericCodeGen/Link.cpp.o
-[488/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/CInterface/glslang_c_interface.cpp.o
-[489/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/OSDependent/Unix/ossource.cpp.o
-[490/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/attribute.cpp.o
-[491/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/Constant.cpp.o
-[492/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/glslang_tab.cpp.o
-[493/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/InfoSink.cpp.o
-[494/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/IntermTraverse.cpp.o
-[495/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/iomapper.cpp.o
-[496/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/Initialize.cpp.o
-[497/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/Intermediate.cpp.o
-[498/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/ParseContextBase.cpp.o
-[499/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/PoolAlloc.cpp.o
-[500/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/RemoveTree.cpp.o
-[501/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/Scan.cpp.o
-[502/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/ParseHelper.cpp.o
-[503/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/SpirvIntrinsics.cpp.o
-[504/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/ShaderLang.cpp.o
-[505/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/Versions.cpp.o
-[506/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/intermOut.cpp.o
-[507/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/SymbolTable.cpp.o
-[508/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/limits.cpp.o
-[509/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/parseConst.cpp.o
-[510/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/linkValidate.cpp.o
-[511/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/reflection.cpp.o
-[512/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/preprocessor/Pp.cpp.o
-[513/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/preprocessor/PpAtom.cpp.o
-[514/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/preprocessor/PpContext.cpp.o
-[515/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/preprocessor/PpScanner.cpp.o
-[516/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/preprocessor/PpTokens.cpp.o
-[517/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/MachineIndependent/propagateNoContraction.cpp.o
-[518/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/InReadableOrder.cpp.o
-[519/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/Logger.cpp.o
-[520/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/SpvPostProcess.cpp.o
-[521/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/GlslangToSpv.cpp.o
-[522/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/SpvBuilder.cpp.o
-[523/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/doc.cpp.o
-[524/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/SpvTools.cpp.o
-[525/1000] Linking CXX static library external/SPIRV-Cross/libspirv-cross-core.a
-[526/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/CInterface/spirv_c_interface.cpp.o
-[527/1000] Linking CXX static library external/pugixml/libpugixml.a
-[528/1000] Building CXX object external/glslang/glslang/CMakeFiles/glslang.dir/__/SPIRV/disassemble.cpp.o
-[529/1000] Building C object external/psvpfstools/libb64/CMakeFiles/libb64.dir/src/cencode.c.o
-[530/1000] Building C object external/psvpfstools/libb64/CMakeFiles/libb64.dir/src/cdecode.c.o
-[531/1000] Building C object external/psvpfstools/libzrif/CMakeFiles/libzRIF.dir/src/keyflate.c.o
-[532/1000] Linking CXX static library vita3k/input/libinput.a
-[533/1000] Building CXX object external/psvpfstools/libzrif/CMakeFiles/libzRIF.dir/src/licdec.cpp.o
-[534/1000] Building CXX object vita3k/config/CMakeFiles/config.dir/src/settings.cpp.o
-[535/1000] Building CXX object vita3k/config/CMakeFiles/config.dir/version.cpp.o
-[536/1000] Linking CXX static library vita3k/cpu/libcpu.a
-[537/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/atrac9.cpp.o
-[538/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/decoder.cpp.o
-[539/1000] Building CXX object external/SPIRV-Cross/CMakeFiles/spirv-cross-glsl.dir/spirv_glsl.cpp.o
-[540/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/aac.cpp.o
-[541/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/h264.cpp.o
-[542/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/mjpeg.cpp.o
-[543/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/mp3.cpp.o
-[544/1000] Building CXX object vita3k/codec/CMakeFiles/codec.dir/src/pcm.cpp.o
-[545/1000] Building CXX object vita3k/config/CMakeFiles/config.dir/src/config.cpp.o
-[546/1000] Building CXX object vita3k/gxm/CMakeFiles/gxm.dir/src/color.cpp.o
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/epoll.h:3:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/socket.h:20:
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/types.h:30:9: warning: 'NTOHLL' macro redefined [-Wmacro-redefined]
+   30 | #define NTOHLL(x) ((((uint64_t)ntohl((x) & 0xFFFFFFFFUL)) << 32) | ntohl((uint32_t)((x) >> 32)))
+      |         ^
+/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/usr/include/sys/_endian.h:146:9: note: previous definition is here
+  146 | #define NTOHLL(x)       (x) = ntohll((__uint64_t)x)
+      |         ^
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/src/app_init.cpp:200:17: warning: enumeration value 'CustomDriver' not handled in switch [-Wswitch]
+  200 |         switch (setting) {
+      |                 ^~~~~~~
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/src/app_init.cpp:200:17: note: add missing switch cases
+  200 |         switch (setting) {
+      |                 ^
+  201 |         case config::RestartRequiredSetting::CpuOpt:
+  202 |             runtime_current.cpu_opt = previous_current.cpu_opt;
+  203 |             break;
+  204 |         case config::RestartRequiredSetting::BackendRenderer:
+  205 |             runtime_current.backend_renderer = previous_current.backend_renderer;
+  206 |             break;
+  207 |         case config::RestartRequiredSetting::GraphicsDevice:
+  208 |             runtime_current.gpu_idx = previous_current.gpu_idx;
+  209 |             break;
+  210 | #ifdef __ANDROID__
+  211 |         case config::RestartRequiredSetting::CustomDriver:
+  212 |             runtime_current.custom_driver_name = previous_current.custom_driver_name;
+  213 |             break;
+  214 | #endif
+  215 |         case config::RestartRequiredSetting::HighAccuracy:
+3 warnings generated.
+[990/1000] Linking CXX static library vita3k/ctrl/libctrl.a
+[991/1000] Linking CXX static library external/libcppcommon.a
+[992/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/session_controller.cpp.o
+[993/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_jit.cpp.o
+[994/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/user.cpp.o
+[995/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/performance.cpp.o
+[996/1000] Linking CXX static library vita3k/app/libapp.a
+[997/1000] Building OBJCXX object vita3k/CMakeFiles/vita3k.dir/__/ios/ios_main.mm.o
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/ios/ios_main.mm:51:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/include/app/session_controller.h:21:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/renderer/include/renderer/state.h:23:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/renderer/include/renderer/types.h:23:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/include/shader/spirv_recompiler.h:21:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/include/shader/usse_translator_types.h:20:
+In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/include/shader/usse_types.h:20:
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/util/include/util/log.h:20:9: warning: 'SPDLOG_ACTIVE_LEVEL' macro redefined [-Wmacro-redefined]
+   20 | #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
+      |         ^
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/spdlog/include/spdlog/common.h:240:13: note: previous definition is here
+  240 |     #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
+      |             ^
+1 warning generated.
+[998/1000] Building CXX object vita3k/CMakeFiles/vita3k.dir/interface.cpp.o
+[999/1000] Linking CXX executable bin/Vita3K.app/Vita3K
+ld: warning: ignoring duplicate libraries: '-lbz2', '-lc++', '-liconv', '-lz', 'external/libminiz.a', 'external/psvpfstools/psvpfsparser/cmake/libpsvpfsparser.a', 'vita3k/app/libapp.a', 'vita3k/audio/libaudio.a', 'vita3k/compat/libcompat.a', 'vita3k/config/libconfig.a', 'vita3k/ctrl/libctrl.a', 'vit
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
++ BUILD_OK=1
++ echo '=== ThinLTO build OK ==='
+=== ThinLTO build OK ===
++ '[' -z 1 ']'
+```
+
+## 07-package.log (last 60 lines)
+```
++ SRC=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master
++ PORT=/Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port
++ OUT=/Users/runner/work/test/test/out
++ export IOS_DEPS=/Users/runner/work/test/test/ios-deps
++ IOS_DEPS=/Users/runner/work/test/test/ios-deps
++ rm -rf Payload /Users/runner/work/test/test/out
++ mkdir -p /Users/runner/work/test/test/out
+++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
+++ head -1
++ APP=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app
++ '[' -z /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app ']'
++ mkdir -p Payload
++ cp -R /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app Payload/Vita3K.app
++ cp /Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/Info.plist Payload/Vita3K.app/Info.plist
++ '[' -d Payload/Vita3K.app/data ']'
++ '[' -d Payload/Vita3K.app/shaders-builtin ']'
++ '[' -f /Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/AppIcon.png ']'
++ true
++ '[' -f /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/Vita3K.png ']'
++ cp /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/Vita3K.png Payload/Vita3K.app/Icon.png
++ mkdir -p Payload/Vita3K.app/Frameworks
++ cp -R /Users/runner/work/test/test/ios-deps/Frameworks/MoltenVK.framework Payload/Vita3K.app/Frameworks/
++ ldid -S Payload/Vita3K.app/Frameworks/MoltenVK.framework/MoltenVK
++ ldid -S/Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/entitlements.plist Payload/Vita3K.app/Vita3K
++ zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
++ cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
++ ls -la /Users/runner/work/test/test/out
+total 63800
+drwxr-xr-x   4 runner  staff       128 Oct 23 03:21 .
+drwxr-xr-x  13 runner  staff       416 Oct 23 03:21 ..
+-rw-r--r--   1 runner  staff  15817891 Oct 23 03:21 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15817891 Oct 23 03:21 Vita3K.tipa
 ```
