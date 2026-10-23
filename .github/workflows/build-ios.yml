@@ -16,6 +16,10 @@ on:
         description: "repo ที่ใช้อ้างอิง commit ของ submodule (owner/repo) เว้นว่าง = nckstwrt/Vita3K-Plus"
         required: false
         default: ""
+      lto:
+        description: "ThinLTO (เร็วขึ้นเล็กน้อย ใช้เวลา build นานขึ้น; ถ้า LTO พังจะ build ใหม่แบบไม่ LTO ให้เอง) : thin / off"
+        required: false
+        default: "thin"
   push:
     branches: [main, master]
     paths: ["*.zip", ".github/workflows/build-ios.yml"]
@@ -102,6 +106,8 @@ jobs:
         run: python3 "$PORT_DIR/scripts/apply_ios_patches.py" "$SRC_DIR" "$PORT_DIR" 2>&1 | tee logs/05-patch.log
 
       - name: Configure + build
+        env:
+          V3K_LTO: ${{ github.event.inputs.lto || 'thin' }}
         run: bash "$PORT_DIR/scripts/build-ios.sh" "$SRC_DIR" 2>&1 | tee logs/06-build.log
 
       - name: Package ipa / tipa
