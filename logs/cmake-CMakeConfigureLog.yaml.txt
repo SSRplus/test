@@ -35,7 +35,7 @@
     kind: "find_package-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/FindCURL.cmake:174 (find_package)"
-      - "external/CMakeLists.txt:373 (find_package)"
+      - "external/CMakeLists.txt:376 (find_package)"
     name: "CURL"
     configs:
       -

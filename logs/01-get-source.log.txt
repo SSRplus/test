@@ -9,16 +9,37 @@ drwxr-xr-x   3 runner  staff       96 Oct 23 05:04 logs
 -rw-r--r--   1 runner  staff        6 Oct 23 05:04 README.md
 -rw-r--r--   1 runner  staff    75769 Oct 23 05:04 Vita3K-iOS-port.zip
 -rw-r--r--   1 runner  staff  7870306 Oct 23 05:04 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 23 05:04 work
-source zip: project.zip
-ERROR: .gitmodules not found - is this the Vita3K source zip?
-work/src_unz
-work/src_unz/Vita3K-iOS-port
-work/src_unz/Vita3K-iOS-port/build-ios.yml
-work/src_unz/Vita3K-iOS-port/metal
-work/src_unz/Vita3K-iOS-port/README-backend-metal.md
-work/src_unz/Vita3K-iOS-port/ios
-work/src_unz/Vita3K-iOS-port/README.md
-work/src_unz/Vita3K-iOS-port/scripts
-work/src_unz/Vita3K-iOS-port/vita3k-ime
-work/src_unz/Vita3K-Plus-master.zip
+drwxr-xr-x   5 runner  staff      160 Oct 23 05:04 work
+unpacking project.zip
+work/project
+work/project/Vita3K-iOS-port
+work/project/Vita3K-iOS-port/build-ios.yml
+work/project/Vita3K-iOS-port/metal
+work/project/Vita3K-iOS-port/metal/tests
+work/project/Vita3K-iOS-port/metal/shader
+work/project/Vita3K-iOS-port/README-backend-metal.md
+work/project/Vita3K-iOS-port/ios
+work/project/Vita3K-iOS-port/ios/ffmpeg_ios.cmake
+work/project/Vita3K-iOS-port/ios/entitlements.plist
+work/project/Vita3K-iOS-port/ios/ios_ui.inc.mm
+work/project/Vita3K-iOS-port/ios/ios_jit.cpp
+work/project/Vita3K-iOS-port/ios/ios_main.mm
+work/project/Vita3K-iOS-port/ios/ios_net_helper.cpp
+work/project/Vita3K-iOS-port/ios/ios_jit.h
+work/project/Vita3K-iOS-port/ios/Info.plist
+work/project/Vita3K-iOS-port/ios/ios-toolchain.cmake
+work/project/Vita3K-iOS-port/README.md
+work/project/Vita3K-iOS-port/scripts
+work/project/Vita3K-iOS-port/scripts/deps-ios.sh
+work/project/Vita3K-iOS-port/scripts/apply_metal_patches.py
+work/project/Vita3K-iOS-port/scripts/make-report.sh
+work/project/Vita3K-iOS-port/scripts/apply_ios_patches.py
+work/project/Vita3K-iOS-port/scripts/make-ipa.sh
+work/project/Vita3K-iOS-port/scripts/build-ios.sh
+work/project/Vita3K-iOS-port/scripts/metal-shader-test.sh
+work/project/Vita3K-iOS-port/scripts/fetch-submodules.sh
+work/project/Vita3K-iOS-port/vita3k-ime
+work/project/Vita3K-iOS-port/vita3k-ime/text.h
+work/project/Vita3K-iOS-port/vita3k-ime/event.h
+source zip: work/project/Vita3K-Plus-master.zip
+src=work/src_unz/Vita3K-Plus-master port=work/project/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus

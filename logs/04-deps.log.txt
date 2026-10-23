@@ -32,8 +32,8 @@
 + echo 'FFmpeg version: 6.1.1'
 FFmpeg version: 6.1.1
 + '[' '!' -f /Users/runner/work/test/test/ios-deps/lib/libavcodec.a ']'
-+ ls /Users/runner/work/test/test/ios-deps /Users/runner/work/test/test/ios-deps/lib
 + head -60
++ ls /Users/runner/work/test/test/ios-deps /Users/runner/work/test/test/ios-deps/lib
 /Users/runner/work/test/test/ios-deps:
 bin
 Frameworks

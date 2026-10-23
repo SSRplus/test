@@ -1,32 +1,32 @@
 + SRC=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master
-+ PORT=/Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port
++ PORT=/Users/runner/work/test/test/work/project/Vita3K-iOS-port
 + OUT=/Users/runner/work/test/test/out
 + export IOS_DEPS=/Users/runner/work/test/test/ios-deps
 + IOS_DEPS=/Users/runner/work/test/test/ios-deps
 + rm -rf Payload /Users/runner/work/test/test/out
 + mkdir -p /Users/runner/work/test/test/out
-++ head -1
 ++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
+++ head -1
 + APP=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app
 + '[' -z /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app ']'
 + mkdir -p Payload
 + cp -R /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app Payload/Vita3K.app
-+ cp /Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/Info.plist Payload/Vita3K.app/Info.plist
++ cp /Users/runner/work/test/test/work/project/Vita3K-iOS-port/ios/Info.plist Payload/Vita3K.app/Info.plist
 + '[' -d Payload/Vita3K.app/data ']'
 + '[' -d Payload/Vita3K.app/shaders-builtin ']'
-+ '[' -f /Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/AppIcon.png ']'
++ '[' -f /Users/runner/work/test/test/work/project/Vita3K-iOS-port/ios/AppIcon.png ']'
 + true
 + '[' -f /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/Vita3K.png ']'
 + cp /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/Vita3K.png Payload/Vita3K.app/Icon.png
 + mkdir -p Payload/Vita3K.app/Frameworks
 + cp -R /Users/runner/work/test/test/ios-deps/Frameworks/MoltenVK.framework Payload/Vita3K.app/Frameworks/
 + ldid -S Payload/Vita3K.app/Frameworks/MoltenVK.framework/MoltenVK
-+ ldid -S/Users/runner/work/test/test/work/port_unz/Vita3K-iOS-port/ios/entitlements.plist Payload/Vita3K.app/Vita3K
++ ldid -S/Users/runner/work/test/test/work/project/Vita3K-iOS-port/ios/entitlements.plist Payload/Vita3K.app/Vita3K
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 62672
-drwxr-xr-x   4 runner  staff       128 Oct 23 04:11 .
-drwxr-xr-x  13 runner  staff       416 Oct 23 04:11 ..
--rw-r--r--   1 runner  staff  15879859 Oct 23 04:11 Vita3K.ipa
--rw-r--r--   1 runner  staff  15879859 Oct 23 04:11 Vita3K.tipa
+total 62384
+drwxr-xr-x   4 runner  staff       128 Oct 23 05:13 .
+drwxr-xr-x  15 runner  staff       480 Oct 23 05:13 ..
+-rw-r--r--   1 runner  staff  15879859 Oct 23 05:13 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15879859 Oct 23 05:13 Vita3K.tipa

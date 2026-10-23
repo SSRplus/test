@@ -17,24 +17,13 @@
 -- SPIRV-Cross: Finding Git version for SPIRV-Cross.
 -- Found Git: /opt/homebrew/bin/git (found version "2.55.0")
 -- SPIRV-Cross: Git hash: d8e3e2b
--- Configuring done (3.5s)
+-- Configuring done (3.7s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/runner/work/test/test/metal-test/build
 [1/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cfg.cpp.o
 [2/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cross_parsed_ir.cpp.o
 [3/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_parser.cpp.o
-[4/12] Building CXX object CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o
-FAILED: [code=1] CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o 
-/usr/bin/c++  -I/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/include -I/Users/runner/work/test/test/work/project/Vita3K-iOS-port/metal/tests/metal_shader_test -I/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/SPIRV-Cross -O3 -DNDEBUG -std=gnu++20 -arch arm64 -fobjc-arc -Wall -Wextra -MD -MT CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o -MF CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o.d -o CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o -c /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp
-/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp:56:21: error: no member named 'ios_use_framebuffer_fetch_subpasses' in 'spirv_cross::CompilerMSL::Options'; did you mean 'use_framebuffer_fetch_subpasses'?
-   56 |         msl_options.ios_use_framebuffer_fetch_subpasses = options.framebuffer_fetch && options.ios;
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                     use_framebuffer_fetch_subpasses
-/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/SPIRV-Cross/spirv_msl.hpp:374:8: note: 'use_framebuffer_fetch_subpasses' declared here
-  374 |                 bool use_framebuffer_fetch_subpasses = false;
-      |                      ^
-1 error generated.
-[5/12] Building OBJCXX object CMakeFiles/metal_shader_test.dir/test_main.mm.o
+[4/12] Building OBJCXX object CMakeFiles/metal_shader_test.dir/test_main.mm.o
 /Users/runner/work/test/test/work/project/Vita3K-iOS-port/metal/tests/metal_shader_test/test_main.mm:133:14: warning: 'fastMathEnabled' is deprecated: first deprecated in macOS 15.0 - Use mathMode instead [-Wdeprecated-declarations]
   133 |         opts.fastMathEnabled = NO;
       |              ^
@@ -42,8 +31,93 @@ FAILED: [code=1] CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/wo
   282 | @property (readwrite, nonatomic) BOOL fastMathEnabled API_DEPRECATED("Use mathMode instead", macos(10.11, 15.0), ios(8.0, 18.0));
       |                                       ^
 1 warning generated.
-[6/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cross.cpp.o
-[7/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-glsl.dir/spirv_glsl.cpp.o
-[8/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-msl.dir/spirv_msl.cpp.o
-ninja: build stopped: subcommand failed.
-TEST-BUILD: compile FAILED
+[5/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cross.cpp.o
+[6/12] Building CXX object CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o
+[7/12] Linking CXX static library spirv-cross/libspirv-cross-core.a
+[8/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-glsl.dir/spirv_glsl.cpp.o
+[9/12] Linking CXX static library spirv-cross/libspirv-cross-glsl.a
+[10/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-msl.dir/spirv_msl.cpp.o
+[11/12] Linking CXX static library spirv-cross/libspirv-cross-msl.a
+[12/12] Linking CXX executable metal_shader_test
+=== run unit test
+[vertex_passthrough] ios=1 ok=1 entry=main0 fragment=0
+[fragment_solid] ios=1 ok=1 entry=main0 fragment=1
+[fragment_texture] ios=1 ok=1 entry=main0 fragment=1
+[vertex_passthrough(macOS)] ios=0 ok=1 entry=main0 fragment=0
+[cache] round trip ok
+[render] device: Apple Paravirtual device
+[render] 0/4096 pixels wrong, centre = (64,128,191,255)
+RESULT: PASS
+=== offline MSL compile for iPhoneOS (xcrun metal)
+OK   fragment_solid.metal  -std=metal3.0 (iOS 16.4+)
+OK   fragment_solid.metal  -std=metal3.1 (iOS 17.0+)
+OK   fragment_texture.metal  -std=metal3.0 (iOS 16.4+)
+OK   fragment_texture.metal  -std=metal3.1 (iOS 17.0+)
+OK   vertex_passthrough.metal  -std=metal3.0 (iOS 16.4+)
+OK   vertex_passthrough.metal  -std=metal3.1 (iOS 17.0+)
+=== generated MSL (for the log)
+----- fragment_solid.metal
+#include <metal_stdlib>
+#include <simd/simd.h>
+
+using namespace metal;
+
+struct main0_out
+{
+    float4 m_7 [[color(0)]];
+};
+
+fragment main0_out main0()
+{
+    main0_out out = {};
+    out.m_7 = float4(0.25, 0.5, 0.75, 1.0);
+    return out;
+}
+
+----- fragment_texture.metal
+#include <metal_stdlib>
+#include <simd/simd.h>
+
+using namespace metal;
+
+struct main0_out
+{
+    float4 m_11 [[color(0)]];
+};
+
+struct main0_in
+{
+    float2 m_10 [[user(locn4)]];
+};
+
+fragment main0_out main0(main0_in in [[stage_in]], texture2d<float> _12 [[texture(2)]], sampler _12Smplr [[sampler(2)]])
+{
+    main0_out out = {};
+    out.m_11 = _12.sample(_12Smplr, in.m_10);
+    return out;
+}
+
+----- vertex_passthrough.metal
+#include <metal_stdlib>
+#include <simd/simd.h>
+
+using namespace metal;
+
+struct main0_out
+{
+    float4 gl_Position [[position]];
+};
+
+struct main0_in
+{
+    float4 m_8 [[attribute(0)]];
+};
+
+vertex main0_out main0(main0_in in [[stage_in]])
+{
+    main0_out out = {};
+    out.gl_Position = in.m_8;
+    return out;
+}
+
+METAL-PHASE1: PASS
