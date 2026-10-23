@@ -1,7 +1,7 @@
 # Vita3K iOS build report
-- run: https://github.com/SSRplus/test/actions/runs/39898001025
+- run: https://github.com/SSRplus/test/actions/runs/39898046632
 - result: **success**
-- date: 2026-10-23 04:10 UTC
+- date: 2026-10-23 04:11 UTC
 
 ## Error lines
 ```
@@ -29,15 +29,15 @@ logs/06-build.log:2204:ld: warning: reducing alignment of section __DATA,__commo
 ```
 --- files in repo root:
 total 15536
-drwxr-xr-x   9 runner  staff      288 Oct 23 04:00 .
-drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 ..
-drwxr-xr-x  14 runner  staff      448 Oct 23 04:00 .git
-drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 .github
-drwxr-xr-x   3 runner  staff       96 Oct 23 04:00 logs
--rw-r--r--   1 runner  staff        6 Oct 23 04:00 README.md
--rw-r--r--   1 runner  staff    75769 Oct 23 04:00 Vita3K-iOS-port.zip
--rw-r--r--   1 runner  staff  7870306 Oct 23 04:00 Vita3K-Plus-master.zip
-drwxr-xr-x   4 runner  staff      128 Oct 23 04:00 work
+drwxr-xr-x   9 runner  staff      288 Oct 23 04:01 .
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:01 ..
+drwxr-xr-x  14 runner  staff      448 Oct 23 04:01 .git
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:01 .github
+drwxr-xr-x   3 runner  staff       96 Oct 23 04:01 logs
+-rw-r--r--   1 runner  staff        6 Oct 23 04:01 README.md
+-rw-r--r--   1 runner  staff    75769 Oct 23 04:01 Vita3K-iOS-port.zip
+-rw-r--r--   1 runner  staff  7870306 Oct 23 04:01 Vita3K-Plus-master.zip
+drwxr-xr-x   4 runner  staff      128 Oct 23 04:01 work
 source zip: Vita3K-Plus-master.zip
 src=work/src_unz/Vita3K-Plus-master port=work/port_unz/Vita3K-iOS-port pin=nckstwrt/Vita3K-Plus
 ```
@@ -62,9 +62,9 @@ ldid nasm
 libplist
 [32m==>[0m [1mFetching downloads for: [32mldid[39m and [32mnasm[39m[0m
 ✔︎ Bottle Manifest libplist (2.7.0)
-✔︎ Bottle ldid (2.1.5_1)
 ✔︎ Bottle nasm (3.02)
 ✔︎ Bottle libplist (2.7.0)
+✔︎ Bottle ldid (2.1.5_1)
 [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
 [34m==>[0m [1mPouring libplist--2.7.0.arm64_sequoia.bottle.tar.gz[0m
 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 604.1KB
@@ -195,7 +195,6 @@ all iOS patches applied
 
 ## 06-build.log (last 60 lines)
 ```
-  149 | #define HTONLL(x)       (x) = htonll((__uint64_t)x)
       |         ^
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/app/src/app_init.cpp:41:
 In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/net/include/net/state.h:20:
@@ -229,6 +228,7 @@ In file included from /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-mast
   214 | #endif
   215 |         case config::RestartRequiredSetting::HighAccuracy:
 3 warnings generated.
+[989/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/apps_list.cpp.o
 [990/1000] Linking CXX static library vita3k/ctrl/libctrl.a
 [991/1000] Linking CXX static library external/libcppcommon.a
 [992/1000] Building CXX object vita3k/app/CMakeFiles/app.dir/src/session_controller.cpp.o
@@ -266,8 +266,8 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + IOS_DEPS=/Users/runner/work/test/test/ios-deps
 + rm -rf Payload /Users/runner/work/test/test/out
 + mkdir -p /Users/runner/work/test/test/out
-++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
 ++ head -1
+++ find /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios -maxdepth 4 -type d -name Vita3K.app
 + APP=/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app
 + '[' -z /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/build-ios/bin/Vita3K.app ']'
 + mkdir -p Payload
@@ -286,9 +286,9 @@ ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000
 + zip -qry /Users/runner/work/test/test/out/Vita3K.ipa Payload
 + cp /Users/runner/work/test/test/out/Vita3K.ipa /Users/runner/work/test/test/out/Vita3K.tipa
 + ls -la /Users/runner/work/test/test/out
-total 62160
-drwxr-xr-x   4 runner  staff       128 Oct 23 04:10 .
-drwxr-xr-x  13 runner  staff       416 Oct 23 04:10 ..
--rw-r--r--   1 runner  staff  15879859 Oct 23 04:10 Vita3K.ipa
--rw-r--r--   1 runner  staff  15879859 Oct 23 04:10 Vita3K.tipa
+total 62672
+drwxr-xr-x   4 runner  staff       128 Oct 23 04:11 .
+drwxr-xr-x  13 runner  staff       416 Oct 23 04:11 ..
+-rw-r--r--   1 runner  staff  15879859 Oct 23 04:11 Vita3K.ipa
+-rw-r--r--   1 runner  staff  15879859 Oct 23 04:11 Vita3K.tipa
 ```
