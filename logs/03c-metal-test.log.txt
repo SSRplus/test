@@ -1,0 +1,49 @@
+-- The C compiler identification is AppleClang 17.0.0.17000013
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- The OBJCXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/c++ - skipped
+-- SPIRV-Cross: Finding Git version for SPIRV-Cross.
+-- Found Git: /opt/homebrew/bin/git (found version "2.55.0")
+-- SPIRV-Cross: Git hash: d8e3e2b
+-- Configuring done (3.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/runner/work/test/test/metal-test/build
+[1/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cfg.cpp.o
+[2/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cross_parsed_ir.cpp.o
+[3/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_parser.cpp.o
+[4/12] Building CXX object CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o
+FAILED: [code=1] CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o 
+/usr/bin/c++  -I/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/include -I/Users/runner/work/test/test/work/project/Vita3K-iOS-port/metal/tests/metal_shader_test -I/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/SPIRV-Cross -O3 -DNDEBUG -std=gnu++20 -arch arm64 -fobjc-arc -Wall -Wextra -MD -MT CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o -MF CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o.d -o CMakeFiles/metal_shader_test.dir/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp.o -c /Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/vita3k/shader/src/spirv_to_msl.cpp:56:21: error: no member named 'ios_use_framebuffer_fetch_subpasses' in 'spirv_cross::CompilerMSL::Options'; did you mean 'use_framebuffer_fetch_subpasses'?
+   56 |         msl_options.ios_use_framebuffer_fetch_subpasses = options.framebuffer_fetch && options.ios;
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     use_framebuffer_fetch_subpasses
+/Users/runner/work/test/test/work/src_unz/Vita3K-Plus-master/external/SPIRV-Cross/spirv_msl.hpp:374:8: note: 'use_framebuffer_fetch_subpasses' declared here
+  374 |                 bool use_framebuffer_fetch_subpasses = false;
+      |                      ^
+1 error generated.
+[5/12] Building OBJCXX object CMakeFiles/metal_shader_test.dir/test_main.mm.o
+/Users/runner/work/test/test/work/project/Vita3K-iOS-port/metal/tests/metal_shader_test/test_main.mm:133:14: warning: 'fastMathEnabled' is deprecated: first deprecated in macOS 15.0 - Use mathMode instead [-Wdeprecated-declarations]
+  133 |         opts.fastMathEnabled = NO;
+      |              ^
+/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLLibrary.h:282:39: note: 'fastMathEnabled' has been explicitly marked deprecated here
+  282 | @property (readwrite, nonatomic) BOOL fastMathEnabled API_DEPRECATED("Use mathMode instead", macos(10.11, 15.0), ios(8.0, 18.0));
+      |                                       ^
+1 warning generated.
+[6/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-core.dir/spirv_cross.cpp.o
+[7/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-glsl.dir/spirv_glsl.cpp.o
+[8/12] Building CXX object spirv-cross/CMakeFiles/spirv-cross-msl.dir/spirv_msl.cpp.o
+ninja: build stopped: subcommand failed.
+TEST-BUILD: compile FAILED
