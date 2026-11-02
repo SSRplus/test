@@ -1,1 +1,397 @@
+name: build
 
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      game_url:
+        description: "Direct link (or Google Drive link) to YOUR OWN game .zip (app/PCSE00789 + patch/PCSE00789)"
+        required: false
+        default: ""
+      cache_version:
+        description: "Bump (2, 3, ...) to force a fresh download and a new cache entry (cache keys are immutable)."
+        required: false
+        default: "1"
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project zip (the zip in the repo root always wins)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import glob, os, shutil, sys, zipfile
+          for z in sorted(glob.glob('*.zip')):
+              try:
+                  f = zipfile.ZipFile(z)
+              except zipfile.BadZipFile:
+                  continue
+              names = f.namelist()
+              hit = [n for n in names if n.endswith('converter/prep.py')]
+              if not hit:
+                  continue
+              prefix = hit[0][:-len('converter/prep.py')]
+              count = 0
+              for n in names:
+                  if not n.startswith(prefix) or n.endswith('/'):
+                      continue
+                  rel = n[len(prefix):]
+                  if rel.startswith('.github/') or rel.startswith('__MACOSX'):
+                      continue                     # keep the workflow that is already in the repo root
+                  os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
+                  with f.open(n) as src, open(rel, 'wb') as dst:
+                      shutil.copyfileobj(src, dst)
+                  count += 1
+              print(f'unpacked {count} files from {z} (prefix {prefix!r})')
+              break
+          else:
+              if os.path.exists('converter/prep.py'):
+                  print('no project zip in repo root - using the files already in the repo')
+              else:
+                  sys.exit('::error::no project .zip containing converter/prep.py found in the repo root')
+          PY
+      - name: Build + run runtime unit test
+        run: |
+          gcc -Wall -Wextra -Iruntime/include runtime/src/*.c runtime/test/test_rt.c -o test_rt -lpthread -lm
+          ./test_rt
+
+  # Needs a PRIVATE repo + a release tagged `game-code` holding game-code.zip (see README).
+  converter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write        # needed to delete old caches
+    outputs:
+      have_game: ${{ steps.fin.outputs.have_game }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project zip (the zip in the repo root always wins)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import glob, os, shutil, sys, zipfile
+          for z in sorted(glob.glob('*.zip')):
+              try:
+                  f = zipfile.ZipFile(z)
+              except zipfile.BadZipFile:
+                  continue
+              names = f.namelist()
+              hit = [n for n in names if n.endswith('converter/prep.py')]
+              if not hit:
+                  continue
+              prefix = hit[0][:-len('converter/prep.py')]
+              count = 0
+              for n in names:
+                  if not n.startswith(prefix) or n.endswith('/'):
+                      continue
+                  rel = n[len(prefix):]
+                  if rel.startswith('.github/') or rel.startswith('__MACOSX'):
+                      continue                     # keep the workflow that is already in the repo root
+                  os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
+                  with f.open(n) as src, open(rel, 'wb') as dst:
+                      shutil.copyfileobj(src, dst)
+                  count += 1
+              print(f'unpacked {count} files from {z} (prefix {prefix!r})')
+              break
+          else:
+              if os.path.exists('converter/prep.py'):
+                  print('no project zip in repo root - using the files already in the repo')
+              else:
+                  sys.exit('::error::no project .zip containing converter/prep.py found in the repo root')
+          PY
+
+      # 1) Which link + which cache entry? (key = hash of the link, so the link itself never appears in logs/keys)
+      - name: Resolve game link and cache key
+        id: src
+        env:
+          CACHE_VERSION: ${{ inputs.cache_version || '1' }}
+        run: |
+          URL=$(python3 -c "import json,os; print(json.load(open(os.environ['GITHUB_EVENT_PATH'])).get('inputs',{}).get('game_url','') or '')")
+          if [ -n "$URL" ]; then
+            echo "::add-mask::$URL"
+            echo "has_url=true" >> "$GITHUB_OUTPUT"
+            echo "key=gamezip-v${CACHE_VERSION}-$(printf '%s' "$URL" | sha256sum | cut -c1-12)-${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_url=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 2) NO link typed -> skip download, restore the NEWEST cached game zip (key prefix match). Nothing is re-saved.
+      - name: Restore latest cached game zip (no link given)
+        id: cache_latest
+        if: steps.src.outputs.has_url != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: game.zip
+          key: gamezip-v${{ inputs.cache_version || '1' }}-nolink
+          restore-keys: |
+            gamezip-v${{ inputs.cache_version || '1' }}-
+
+      # 3) Link typed -> always download fresh (a push has no link, so it can never trigger a 3.8 GB download)
+      - name: Download game zip (link given)
+        id: fetch
+        if: steps.src.outputs.has_url == 'true'
+        env:
+          GAME_URL: ${{ inputs.game_url }}
+        run: |
+          echo "::add-mask::$GAME_URL"
+          if echo "$GAME_URL" | grep -q 'drive.google.com'; then
+            pip install gdown
+            gdown --fuzzy "$GAME_URL" -O game.zip
+          else
+            curl -fL --retry 3 -o game.zip "$GAME_URL"
+          fi
+          ls -l game.zip
+
+      # 4) Quick integrity check of the download (reads the zip index only)
+      - name: Validate downloaded zip
+        id: val
+        if: steps.fetch.outcome == 'success'
+        run: |
+          python3 - <<'PY'
+          import sys, zipfile
+          z = zipfile.ZipFile('game.zip')
+          names = z.namelist()
+          hits = [n for n in names if 'PCSE00789' in n]
+          print(len(names), 'entries,', len(hits), 'under PCSE00789')
+          if not hits:
+              sys.exit('::error::zip has no PCSE00789 files - wrong link, or an HTML error page was downloaded')
+          PY
+
+      # 5) Save to cache ONLY after a fresh, valid download (never on a cache hit).
+      #    Done before our own scripts so a bug there can never waste the 3.4 GB download.
+      - name: Save game zip to cache
+        if: steps.fetch.outcome == 'success' && steps.val.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: game.zip
+          key: ${{ steps.src.outputs.key }}
+
+      # 5b) Keep only the newest game cache (3.2 GB each, repo limit is 10 GB)
+      - name: Delete older game caches
+        if: steps.fetch.outcome == 'success' && steps.val.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEWKEY: ${{ steps.src.outputs.key }}
+        run: |
+          gh cache list --limit 100 --json id,key --jq '.[] | select(.key | startswith("gamezip-")) | select(.key != env.NEWKEY) | .id' \
+            | xargs -r -n1 gh cache delete
+
+      # 6) Extract only the code (~40 MB)
+      - name: Extract game code from zip
+        id: org
+        if: (steps.src.outputs.has_url == 'true' && steps.fetch.outcome == 'success') || (steps.src.outputs.has_url != 'true' && steps.cache_latest.outputs.cache-matched-key != '')
+        run: python converter/organize.py --zip game.zip --out game
+
+      # 7) Fallback: private release asset with the code only
+      - name: Fallback - private release asset
+        if: steps.org.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release download game-code -p game-code.zip -D . ; then
+            mkdir -p game && unzip -q game-code.zip -d game
+          fi
+
+      - name: Check game code is present
+        id: fin
+        run: |
+          if [ -d game/app ] && [ -n "$(find game/app -name '*.self' -o -name eboot.bin | head -1)" ]; then
+            echo "have_game=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::No game code (no cache hit, no manual download, no game-code release) - skipping conversion"
+            echo "have_game=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: NID names (vita-headers)
+        if: steps.fin.outputs.have_game == 'true'
+        run: git clone --depth 1 https://github.com/vitasdk/vita-headers || true
+      - name: Prep (merge patch, SELF -> ELF, manifest, HLE worklist)
+        if: steps.fin.outputs.have_game == 'true'
+        run: |
+          pip install pytest
+          python converter/prep.py --app game/app --patch game/patch --out out --nid-db vita-headers/db
+          GAME_CODE=game python -m pytest -q converter
+      - name: Analyze (function counts + instruction histogram)
+        if: steps.fin.outputs.have_game == 'true'
+        run: |
+          pip install capstone
+          python converter/analyze.py --app game/app --patch game/patch --out out/analysis | tee analysis.log
+      # ---- Stage 3a: module loader (relocations). Cheap, so it runs on every build that has the game code. ----
+      - name: Loader - load every module in C and cross-check against the Python reference
+        if: steps.fin.outputs.have_game == 'true'
+        continue-on-error: true
+        run: |
+          gcc -O1 -Wall -Iruntime/include runtime/src/*.c runtime/test/test_loader.c -o test_loader -lpthread -lm
+          ./test_loader game/patch > out/loader.txt
+          python converter/check_loader.py out/loader.txt game/patch 2>&1 | tee out/loader_check.txt
+      # ---- Stage 3b: NID linker (imports/exports across all modules) ----
+      - name: Linker - resolve every import in C and cross-check against the Python analysis
+        if: steps.fin.outputs.have_game == 'true'
+        continue-on-error: true
+        run: |
+          gcc -O1 -Wall -Iruntime/include runtime/src/*.c runtime/test/test_link.c -o test_link -lpthread -lm
+          ./test_link game/app game/patch > out/link.txt
+          python converter/check_link.py out/link.txt game/app game/patch out/hle_worklist.json 2>&1 | tee out/link_check.txt
+      # ---- Stage 2: lifter. Informational: failures here never block the iOS build. ----
+      - name: Lifter - install Capstone + Unicorn
+        id: liftdeps
+        if: steps.fin.outputs.have_game == 'true'
+        continue-on-error: true
+        run: pip install capstone unicorn
+      - name: Lifter - mock test (no Capstone needed)
+        if: steps.fin.outputs.have_game == 'true'
+        continue-on-error: true
+        run: |
+          python converter/test_lift_mock.py
+          python -c "import sys; sys.path.insert(0,'converter'); import test_lift_mock as t; t.test_emit_compiles(); print('mock ok')"
+          python converter/test_cli.py
+          GAME_CODE=game python converter/test_vita_api.py
+      - name: Lifter - differential test vs Unicorn (real game encodings)
+        if: steps.fin.outputs.have_game == 'true' && steps.liftdeps.outcome == 'success' && github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          python converter/difftest.py --app game/app --patch game/patch --out out/difftest.txt
+          python converter/difftest_fn.py --app game/app --patch game/patch --out out/difftest_fn.txt
+      - name: Lifter - instruction coverage over the whole game
+        if: steps.fin.outputs.have_game == 'true' && steps.liftdeps.outcome == 'success' && github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        timeout-minutes: 45
+        run: python converter/lift.py coverage --app game/app --patch game/patch --jobs 4 2>&1 | tee out/lift_coverage.txt
+      - name: Lifter - emit C for the Boot module and syntax-check it
+        if: steps.fin.outputs.have_game == 'true' && steps.liftdeps.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python converter/lift.py module --app game/app --patch game/patch --module god_m000_Boot --out out/gen 2>&1 | tee out/lift_boot.txt
+          gcc -fsyntax-only -Wall -Wno-unused-label -Wno-unused-variable -Iruntime/include out/gen/god_m000_Boot.c 2>&1 | head -80 | tee out/gen_syntax.txt
+      # ---- Stage 4: first boot. Lift EVERY module to C, compile natively, run module_start. Manual runs only (long). ----
+      - name: Boot - lift all modules, build the native runner, run the game's module_start
+        if: steps.fin.outputs.have_game == 'true' && steps.liftdeps.outcome == 'success' && github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        timeout-minutes: 120
+        run: |
+          python converter/lift.py all --app game/app --patch game/patch --out out/genall --jobs 4 2>&1 | tail -80 | tee out/lift_all.txt
+          python converter/gen_nid_names.py out/hle_worklist.json out/nid_names.c out/nid_db.json
+          gcc -O1 -w -Iruntime/include -Iout runtime/src/*.c runtime/runner/hle_kernel.c runtime/test/test_hle.c -o out/test_hle -lpthread -lm && ./out/test_hle | tee out/hle_test.txt
+          gcc -O1 -w -Iruntime/include -Iout runtime/src/*.c runtime/runner/hle_kernel.c runtime/test/test_modinfo.c -o out/test_modinfo -lpthread -lm && ./out/test_modinfo game/patch/eboot.bin | tee -a out/hle_test.txt
+          gcc -O1 -w -Iruntime/include -Iout runtime/src/*.c runtime/runner/hle_kernel.c runtime/runner/hle_system.c runtime/runner/hle_gxm.c runtime/test/test_system.c -o out/test_system -lpthread -lm && ./out/test_system | tee -a out/hle_test.txt
+          gcc -O1 -w -Iruntime/include -Iout runtime/src/*.c runtime/runner/hle_kernel.c runtime/runner/hle_system.c runtime/runner/hle_gxm.c runtime/test/test_gxm.c -o out/test_gxm -lpthread -lm && ./out/test_gxm 2>&1 | tee -a out/hle_test.txt
+          JOBS=4 sh runtime/runner/build.sh out/genall out/vita_run out/nid_names.c 2>&1 | tail -60 | tee out/boot_build.txt
+          (timeout 120 ./out/vita_run game/app game/patch 2>&1 | head -600) | tee out/boot_run.txt
+          python converter/crash_disasm.py out/boot_run.txt game/app game/patch > out/crash_disasm.txt 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.fin.outputs.have_game == 'true'
+        with:
+          name: lift-report
+          path: |
+            out/difftest.txt
+            out/difftest_fn.txt
+            out/lift_coverage.txt
+            out/lift_boot.txt
+            out/gen_syntax.txt
+            out/loader_check.txt
+            out/link_check.txt
+            out/lift_all.txt
+            out/boot_build.txt
+            out/boot_run.txt
+            out/hle_test.txt
+            out/crash_disasm.txt
+          if-no-files-found: ignore
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: steps.fin.outputs.have_game == 'true'
+        with:
+          name: manifest
+          path: out/manifest.json
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: steps.fin.outputs.have_game == 'true'
+        with:
+          name: converted-private
+          path: |
+            out/elf
+            out/REPORT.txt
+            out/hle_worklist.json
+            out/analysis
+            out/gen
+          retention-days: 3
+
+  ios:
+    needs: [runtime-test, converter]
+    if: ${{ !cancelled() && needs.runtime-test.result == 'success' }}
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project zip (the zip in the repo root always wins)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import glob, os, shutil, sys, zipfile
+          for z in sorted(glob.glob('*.zip')):
+              try:
+                  f = zipfile.ZipFile(z)
+              except zipfile.BadZipFile:
+                  continue
+              names = f.namelist()
+              hit = [n for n in names if n.endswith('converter/prep.py')]
+              if not hit:
+                  continue
+              prefix = hit[0][:-len('converter/prep.py')]
+              count = 0
+              for n in names:
+                  if not n.startswith(prefix) or n.endswith('/'):
+                      continue
+                  rel = n[len(prefix):]
+                  if rel.startswith('.github/') or rel.startswith('__MACOSX'):
+                      continue                     # keep the workflow that is already in the repo root
+                  os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
+                  with f.open(n) as src, open(rel, 'wb') as dst:
+                      shutil.copyfileobj(src, dst)
+                  count += 1
+              print(f'unpacked {count} files from {z} (prefix {prefix!r})')
+              break
+          else:
+              if os.path.exists('converter/prep.py'):
+                  print('no project zip in repo root - using the files already in the repo')
+              else:
+                  sys.exit('::error::no project .zip containing converter/prep.py found in the repo root')
+          PY
+      - uses: actions/download-artifact@v4
+        if: needs.converter.outputs.have_game == 'true'
+        with:
+          name: manifest
+          path: launcher/Resources
+      - name: Use newest installed Xcode (XcodeGen writes project format 77 = Xcode 16+)
+        run: |
+          LATEST=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$LATEST/Contents/Developer"
+          xcodebuild -version
+      - name: Tools
+        run: brew install xcodegen ldid
+      - name: Generate Xcode project
+        working-directory: launcher
+        run: xcodegen generate
+      - name: Build (unsigned)
+        working-directory: launcher
+        run: |
+          xcodebuild -project GE2RBLauncher.xcodeproj -scheme GE2RBLauncher \
+            -configuration Release -sdk iphoneos -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
+      - name: Package IPA (fake-sign with entitlements)
+        working-directory: launcher
+        run: |
+          APP=build/Build/Products/Release-iphoneos/GE2RBLauncher.app
+          ldid -SGE2RB.entitlements "$APP/GE2RBLauncher"
+          mkdir -p Payload && cp -r "$APP" Payload/
+          zip -qr GE2RBLauncher.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GE2RBLauncher-ipa
+          path: launcher/GE2RBLauncher.ipa
+          retention-days: 7
